@@ -3,7 +3,6 @@ set -eu -o pipefail
 
 trap "echo ❌ Failed to install git submodules" ERR
 
-git submodule init
-git submodule update
+git clone https://github.com/signal11/hidapi.git
 
 echo ✔️ Successfully installed git submodules
