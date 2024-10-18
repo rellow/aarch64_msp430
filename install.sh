@@ -32,4 +32,13 @@ cp hidapi/libusb/hid.o mspds/ThirdParty/lib64/hid-libusb.o
 cd mspds
 make STATIC=1 BOOST_DIR=$WORKING_PATH/boost_1_82_0
 sudo cp libmsp430.so /usr/lib/libmsp430.so
-cd ../../
+cd ../..
+
+# BUILD MSP430-GCC
+wget https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-LlCjWuAbzH/9.3.1.2/msp430-gcc-9.3.1.11-source-full.tar.bz2
+tar --bzip2 -xf msp430-gcc-9.3.1.11-source-full.tar.bz2
+cd msp430-gcc-9.3.1.11-source-full
+sed -i '111,142 {s/^/#/}' README-build.sh
+base README-build.sh
+cd ..
+
