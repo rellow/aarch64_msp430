@@ -39,6 +39,6 @@ wget https://dr-download.ti.com/software-development/ide-configuration-compiler-
 tar --bzip2 -xf msp430-gcc-9.3.1.11-source-full.tar.bz2
 cd msp430-gcc-9.3.1.11-source-full
 sed -i '111,142 {s/^/#/}' README-build.sh
-base README-build.sh
+bash README-build.sh
 cd ..
 
