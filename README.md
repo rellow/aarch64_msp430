@@ -2,12 +2,17 @@
 
 This repo contains the `msp430` toolchain and dependencies as well as scripts for installing `mspdebug` on the Raspberry Pi.
 
+## Navigate to the Repository
+
+]$ cd /path/to/aarch64_msp430
+
 ## Add LIBBOOST to LD_LIBRARY_PATH
 
 ]$ LD_LIBRARY_PATH=/path/to/libboost/lib:$LD_LIBRARY_PATH
 
 ## Setup
 
+]$ cd rpi_msp430
 ]$ bash `setup.sh`
 
 If it runs successfully then you can execute `mspdebug` with your MSP430 board connected to your RPi
