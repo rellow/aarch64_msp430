@@ -54,4 +54,5 @@ unzip msp430-gcc-support-files-1.212.zip
 cd msp430_code_examples/blink
 sed -i "3s/.*/MSP\_TOOLS\_HOME="$WORKING_PATH_ESC"msp430-gcc-9.3.1.11-source-full\/install\/usr\/local\/bin/" Makefile
 sed -i "4s/.*/MSP\_SUPPORT\_HOME="$WORKING_PATH_ESC"msp430-gcc-support-files/" Makefile
-
+cp Makefile ../button/
+cd ../..
