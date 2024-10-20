@@ -20,7 +20,7 @@ cd hidapi
 sed -i '/AM\_INIT\_AUTOMAKE/{n;s/^/\#/}' configure.ac
 ./bootstrap || ./bootstrap # It installs ltmain.sh in the wrong place the first time, then it copies into the right folder the second time...
 ./configure
-make -j `nproc`
+make
 cd ..
 
 # BUILD LIBMSP430
@@ -30,7 +30,7 @@ cp hidapi/hidapi/hidapi.h mspds/ThirdParty/include
 cp hidapi/libusb/hid.o mspds/ThirdParty/lib/hid-libusb.o
 cp hidapi/libusb/hid.o mspds/ThirdParty/lib64/hid-libusb.o
 cd mspds
-make STATIC=1 BOOST_DIR=$WORKING_PATH/boost_1_82_0 -j `nproc`
+make STATIC=1 BOOST_DIR=$WORKING_PATH/boost_1_82_0
 sudo cp libmsp430.so /usr/lib/libmsp430.so
 cd ../..
 
@@ -38,6 +38,9 @@ cd ../..
 wget https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-LlCjWuAbzH/9.3.1.2/msp430-gcc-9.3.1.11-source-full.tar.bz2
 tar --bzip2 -xf msp430-gcc-9.3.1.11-source-full.tar.bz2
 cd msp430-gcc-9.3.1.11-source-full
+sed -i '88s/.*/make -j \`nproc\`/' README-build.sh
+sed -i '98s/.*/make -j \`nproc\`/' README-build.sh
+sed -i '107s/.*/make -j \`nproc\`/' README-build.sh
 sed -i '111,142 {s/^/#/}' README-build.sh
 bash README-build.sh
 cd ..
