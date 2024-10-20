@@ -20,7 +20,7 @@ cd hidapi
 sed -i '/AM\_INIT\_AUTOMAKE/{n;s/^/\#/}' configure.ac
 ./bootstrap || ./bootstrap # It installs ltmain.sh in the wrong place the first time, then it copies into the right folder the second time...
 ./configure
-make
+make -j `nproc`
 cd ..
 
 # BUILD LIBMSP430
@@ -30,7 +30,7 @@ cp hidapi/hidapi/hidapi.h mspds/ThirdParty/include
 cp hidapi/libusb/hid.o mspds/ThirdParty/lib/hid-libusb.o
 cp hidapi/libusb/hid.o mspds/ThirdParty/lib64/hid-libusb.o
 cd mspds
-make STATIC=1 BOOST_DIR=$WORKING_PATH/boost_1_82_0
+make STATIC=1 BOOST_DIR=$WORKING_PATH/boost_1_82_0 -j `nproc`
 sudo cp libmsp430.so /usr/lib/libmsp430.so
 cd ../..
 
