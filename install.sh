@@ -1,6 +1,7 @@
 #!/bin/bash
 
 WORKING_PATH="$(cd "$(dirname -- "$1")" >/dev/null; pwd -P)/$(basename -- "$1")"
+WORKING_PATH_ESC=$(printf '%s\n' "$WORKING_PATH" | sed -e 's/[\/&]/\\&/g')
 
 ## GET AND BUILD BOOST
 wget https://archives.boost.io/release/1.82.0/source/boost_1_82_0.tar.bz2
@@ -44,4 +45,13 @@ sed -i '107s/.*/make -j \`nproc\`/' README-build.sh
 sed -i '111,142 {s/^/#/}' README-build.sh
 bash README-build.sh
 cd ..
+
+# GET MSP430-GCC SUPPORT FILES
+wget https://dr-download.ti.com/software-development/ide-configuration-compiler-or-debugger/MD-LlCjWuAbzH/9.3.1.2/msp430-gcc-support-files-1.212.zip
+unzip msp430-gcc-support-files-1.212.zip
+
+# UPDATE MAKEFILES
+cd msp430_code_examples/blink
+sed -i "3s/.*/MSP\_TOOLS\_HOME="$WORKING_PATH_ESC"msp430-gcc-9.3.1.11-source-full\/install\/usr\/local\/bin/" Makefile
+sed -i "4s/.*/MSP\_SUPPORT\_HOME="$WORKING_PATH_ESC"msp430-gcc-support-files/" Makefile
 
