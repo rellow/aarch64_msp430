@@ -4,7 +4,7 @@ This repo contains the `msp430` toolchain and dependencies as well as scripts fo
 
 ## Navigate to the Repository
 
-cd /path/to/aarch64_msp430 
+]$ cd /path/to/aarch64_msp430 < br/ >
 ]$ bash `install.sh`
 
 ## Modify the blink Makefile
